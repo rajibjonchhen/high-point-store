@@ -1,18 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import Detail from './Detail'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <BrowserRouter>
-    <Layout>
-      <Route exact path="/" render={() => <Home />} />
-      <Route exact path="/about" render={() => <Detail/>} />
-    </Layout>
+    <Routes>
+      <Route exact path="/" element={<Home />} />
+      <Route exact path="/detail" element={<Detail/>} />
+    </Routes>
   </BrowserRouter>
       
   )
