@@ -1,4 +1,6 @@
 import React from 'react'
+import './myFooter.scss'
+
 
 export default function MyFooter() {
   return (

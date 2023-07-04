@@ -5,6 +5,7 @@ import Home from './components/home/Home'
 import Detail from './components/detail/Detail'
 import MyNavbar from './components/header/MyNavbar'
 import MyFooter from './components/footer/MyFooter'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
