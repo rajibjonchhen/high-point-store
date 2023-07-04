@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Home() {
-  return (
+    useEffect(()=>{
+        console.log("hello home")
+      },[])
+    return (
     <div>
-      Home
+        Home
     </div>
-  )
+    )
 }
