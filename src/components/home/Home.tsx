@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './home.scss'
+import ProductCard from '../productCard/ProductCard'
 
 export default function Home() {
     useEffect(()=>{
@@ -7,7 +8,7 @@ export default function Home() {
       },[])
     return (
     <div>
-        home
+       {['', ''].map((product) => <ProductCard product= {product} /> )}
     </div>
     )
 }
