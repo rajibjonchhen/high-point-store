@@ -1,13 +1,19 @@
 export interface Iproduct{
-        productName:String;
-        productId:String;
-        description:String;
-        categorgy:String[];
+        productName:string;
+        productId:string;
+        description:{
+                colors:	string[]
+                style:	string;
+                type:	string;
+                material: string;
+                composition: string;
+                careInstructions:string
+                };
+        categories:String[];
         price:String;
         offer:String;
         brandName:String;
         images:String[];
         sizes:String[];
-        colors:String[];
         rating:String
 }
