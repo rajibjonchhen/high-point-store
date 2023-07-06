@@ -1,9 +1,9 @@
+import { Alert } from 'bootstrap';
 import React from 'react'
 
-import AlertMessage from 'react-bootstrap/Alert';
-export default function Alert(variant:string, message:string) {
+export default function AlertMessage({color, message}) {
   return (
-        <Alert variant={variant}>
+        <Alert key={color} variant={color}>
           {message}
         </Alert>
   );

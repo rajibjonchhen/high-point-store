@@ -3,11 +3,12 @@ import './productCard.scss'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Iproduct } from '../../interface/productInterface';
+import {GiShoppingCart} from 'react-icons/gi'
 
 export default function ProductCard({product}) {
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" src={product.images[0]} />
       <Card.Body>
         <Card.Title>{product.productName}</Card.Title>
         <Card.Text>
@@ -17,8 +18,11 @@ export default function ProductCard({product}) {
           </div>
           )
         } */}
+            <span>{product.description.style}</span>
+            <br/>
+            <span>{product.description.type}</span>
         </Card.Text>
-        <Button variant="primary">Add to basket</Button>
+        <Button variant="success"><GiShoppingCart/></Button>
       </Card.Body>
     </Card>
   );

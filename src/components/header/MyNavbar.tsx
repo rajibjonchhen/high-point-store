@@ -13,10 +13,10 @@ import { ConstRoutes } from '../../constant/ConstRoutes';
 export default function MyNavbar() {
   return (
     <>
-      {[ 'sm'].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
+      {[ 'lg'].map((expand) => (
+        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3" sticky="top">
           <Container fluid>
-            <Navbar.Brand href="#">HIGH POINT STORE</Navbar.Brand>
+            <Link  className="nav-link brand"  to={ConstRoutes.home.url()}>HIGH POINT STORE</Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -25,16 +25,25 @@ export default function MyNavbar() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
+                HIGH POINT STORE
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Link to={ConstRoutes.home.url()}>
-                    <div className="nav-link">Home</div>
+              <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+                </Form>
+                  <Link className="nav-link" to={ConstRoutes.home.url()}>
+                    Home
                   </Link>
-                  <Link to={ConstRoutes.detail.url('a123')}>
-                    <div className="nav-link">Detail</div>
+                  <Link className="nav-link" to={ConstRoutes.detail.url('a123')}>
+                    Detail
                   </Link>
                   <NavDropdown
                     title="Dropdown"
@@ -50,15 +59,6 @@ export default function MyNavbar() {
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
