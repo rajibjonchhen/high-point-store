@@ -33,13 +33,17 @@ export default function Home() {
         sampleProduct,
         sampleProduct,
         sampleProduct, 
+        sampleProduct, 
         sampleProduct
       ]
     return (
     <div>
-        
-        <Jumbotron/>
-       {myProductArr.map((product:Iproduct) => <ProductCard key={product.productId}  product={product}/> )}
+
+        <Jumbotron/>    
+        <div className='d-flex gap-3'>
+            
+        {myProductArr.map((product:Iproduct) => <ProductCard  key={product.productId}  product={product}/> )}
+        </div>
     </div>
     )
 }
