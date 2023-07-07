@@ -1,6 +1,6 @@
 import React from 'react'
 import './jumbotron.scss'
-import  Button from 'react-bootstrap/button';
+import  Button from 'react-bootstrap/Button';
 
 export default function Jumbotron() {
   return (
