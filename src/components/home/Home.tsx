@@ -30,11 +30,12 @@ export default function Home() {
         
     }
       const myProductArr:Iproduct[]= [
-        sampleProduct,
-        sampleProduct,
-        sampleProduct, 
-        sampleProduct, 
-        sampleProduct
+        {...sampleProduct, productId : '111'},
+        {...sampleProduct, productId : '222'},
+        {...sampleProduct, productId : '333'},
+        {...sampleProduct, productId : '444'},
+        {...sampleProduct, productId : '555'},
+        {...sampleProduct, productId : '666'},
       ]
     return (
     <div>
