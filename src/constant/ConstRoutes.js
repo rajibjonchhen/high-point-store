@@ -4,7 +4,7 @@ export const ConstRoutes = {
         path : '/'
     },
     detail:{
-        url : (id : string) => `/detail/${id}`,
+        url : (id) => `/detail/${id}`,
         path : '/detail/:id'
     },
 }

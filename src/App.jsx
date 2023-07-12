@@ -1,9 +1,9 @@
 import './App.scss'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './components/home/Home'
-import Detail from './components/detail/Detail'
-import MyNavbar from './components/header/MyNavbar'
-import MyFooter from './components/footer/MyFooter'
+import Home from './scences/home/Home'
+import Detail from './scences/detail/Detail'
+import MyNavbar from './scences/global/header/MyNavbar'
+import MyFooter from './scences/global/footer/MyFooter'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ConstRoutes } from './constant/ConstRoutes'
 

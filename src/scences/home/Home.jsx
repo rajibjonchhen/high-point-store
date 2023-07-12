@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import './home.scss'
-import ProductCard from '../productCard/ProductCard'
-import Jumbotron from '../jumbotron/Jumbotron'
-import { Iproduct } from '../../interface/productInterface'
+import ProductCard from '../../components/productCard/ProductCard.jsx'
+import Jumbotron from '../../components/jumbotron/Jumbotron'
 
 
 export default function Home() {
@@ -10,9 +9,9 @@ export default function Home() {
         console.log("hello home")
       },[])
 
-      const sampleProduct:Iproduct = {
-        productName:'Cool T-shirt',
-        productId:'12345678',
+      const sampleProduct = {
+        name:'Cool T-shirt',
+        id:'12345678',
         description:{
           colors:	['red'],
           style:	"free",
@@ -29,13 +28,13 @@ export default function Home() {
         rating:'4.5'
         
     }
-      const myProductArr:Iproduct[]= [
-        {...sampleProduct, productId : '111'},
-        {...sampleProduct, productId : '222'},
-        {...sampleProduct, productId : '333'},
-        {...sampleProduct, productId : '444'},
-        {...sampleProduct, productId : '555'},
-        {...sampleProduct, productId : '666'},
+      const myProductArr= [
+        {...sampleProduct, id : '111'},
+        {...sampleProduct, id : '222'},
+        {...sampleProduct, id : '333'},
+        {...sampleProduct, id : '444'},
+        {...sampleProduct, id : '555'},
+        {...sampleProduct, id : '666'},
       ]
     return (
     <div>
@@ -43,7 +42,7 @@ export default function Home() {
         <Jumbotron/>    
         <div className='d-flex gap-3'>
             
-        {myProductArr.map((product:Iproduct) => <ProductCard  key={product.productId}  product={product}/> )}
+        {myProductArr.map((product) => <ProductCard  key={product.id}  product={product}/> )}
         </div>
     </div>
     )
