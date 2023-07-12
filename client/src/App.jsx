@@ -10,6 +10,8 @@ import { ConstRoutes } from './constant/ConstRoutes'
 function App() {
 
   return (
+    <div className='app'>
+
     <BrowserRouter>
     <MyNavbar/>
     <Routes>
@@ -18,6 +20,7 @@ function App() {
     </Routes>
     <MyFooter/>
   </BrowserRouter>
+    </div>
       
   )
 }
