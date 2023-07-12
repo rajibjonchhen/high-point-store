@@ -10,6 +10,10 @@ export const ConstRoutes = {
     checkout : {
         url : () => `/checkout`,
         path : '/checkout'
+    },
+    confirmation : {
+        url : () => `/confirmation`,
+        path : '/confirmation'
     }
 
 }
