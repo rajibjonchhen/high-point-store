@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './detail.scss'
+import './productDetail.scss'
 
 export default function Detail() {
     useEffect(()=>{

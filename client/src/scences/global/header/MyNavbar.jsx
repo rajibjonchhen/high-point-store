@@ -45,6 +45,9 @@ export default function MyNavbar() {
                   <Link className="nav-link" to={ConstRoutes.detail.url('a123')}>
                     Detail
                   </Link>
+                  <Link className="nav-link" to={ConstRoutes.checkout.url()}>
+                    CheckOut
+                  </Link>
                   <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
