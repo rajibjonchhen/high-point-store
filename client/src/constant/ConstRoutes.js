@@ -12,8 +12,8 @@ export const ConstRoutes = {
         path : '/checkout'
     },
     confirmation : {
-        url : () => `/confirmation`,
-        path : '/confirmation'
+        url : () => `/checkout/success`,
+        path : '/checkout/success'
     }
 
 }
