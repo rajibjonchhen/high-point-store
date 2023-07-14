@@ -14,7 +14,6 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../../theme";
-import CartMenu from "../cartMenu/CartMenu";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -100,7 +99,6 @@ export default function Navbar() {
             </IconButton>
         </Box>
       </Box>
-              <CartMenu/>
     </Box>
   );
 }

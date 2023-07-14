@@ -9,6 +9,7 @@ import { ConstRoutes } from './constant/ConstRoutes'
 import { useEffect } from 'react'
 import CheckOut from './scences/checkOut/CheckOut'
 import Confirmation from './scences/checkOut/Confirmation'
+import CartMenu from './scences/global/cartMenu/CartMenu'
 
 const ScrollToTop = () => {
   const {pathname} = useLocation()
@@ -34,6 +35,7 @@ function App() {
       <Route path = { ConstRoutes.checkout.path } element = { <CheckOut/> }  />
       <Route path = { ConstRoutes.confirmation.path } element  = { <Confirmation/> } />
     </Routes>
+    <CartMenu/>
     <Footer/>
   </BrowserRouter>
     </div>
