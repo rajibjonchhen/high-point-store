@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './home.scss'
-import Jumbotron from '../../components/jumbotron/Jumbotron'
+import MainCarousel from './mainCarousel/MainCarousel'
 import Item from '../../components/productCard/Item'
 
 
@@ -33,7 +33,7 @@ export default function Home() {
     return (
     <div>
 
-        <Jumbotron/>    
+        <MainCarousel/>    
         <div className='d-flex gap-3'>
             
         {myProductArr.map((item) => <Item  key={item.id}  item={item}/> )}
