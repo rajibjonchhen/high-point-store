@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './home.scss'
-import ProductCard from '../../components/productCard/ProductCard.jsx'
-import Jumbotron from '../../components/jumbotron/Jumbotron'
+import MainCarousel from './mainCarousel/MainCarousel'
+import Item from '../../components/productCard/Item'
 
 
 export default function Home() {
@@ -29,20 +29,14 @@ export default function Home() {
         
     }
       const myProductArr= [
-        {...sampleProduct, id : '111'},
-        {...sampleProduct, id : '222'},
-        {...sampleProduct, id : '333'},
-        {...sampleProduct, id : '444'},
-        {...sampleProduct, id : '555'},
-        {...sampleProduct, id : '666'},
       ]
     return (
     <div>
 
-        <Jumbotron/>    
+        <MainCarousel/>    
         <div className='d-flex gap-3'>
             
-        {myProductArr.map((product) => <ProductCard  key={product.id}  product={product}/> )}
+        {myProductArr.map((item) => <Item  key={item.id}  item={item}/> )}
         </div>
     </div>
     )

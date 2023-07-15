@@ -1,10 +1,19 @@
 export const ConstRoutes = {
-    home:{
+    home : {
         url : () => `/`,
         path : '/'
     },
-    detail:{
+    detail : {
         url : (id) => `/detail/${id}`,
         path : '/detail/:id'
     },
+    checkout : {
+        url : () => `/checkout`,
+        path : '/checkout'
+    },
+    confirmation : {
+        url : () => `/checkout/success`,
+        path : '/checkout/success'
+    }
+
 }
