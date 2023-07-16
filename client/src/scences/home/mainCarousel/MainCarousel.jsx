@@ -94,7 +94,7 @@ export default function MainCarousel() {
           >
             <Typography color={shades.secondary[200]}>High point fashion</Typography>
             <Typography variant = "h1" color={shades.secondary[200]}>see the unseen</Typography>
-            <Typography fontWeight= "bold" color={shades.secondary[200]}>Discover more</Typography>
+            <Typography fontWeight= "bold" color={shades.secondary[200]} sx={{textDecoration : 'underline', cursor : 'pointer'}}>Discover more</Typography>
           </Box>
         </Box>
       ))}

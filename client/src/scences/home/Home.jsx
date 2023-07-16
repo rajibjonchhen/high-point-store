@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import './home.scss'
 import MainCarousel from './mainCarousel/MainCarousel'
 import Item from '../../components/productCard/Item'
+import ShoppingList from './shoppingList/ShoppingList'
 
 
 export default function Home() {
@@ -34,10 +35,7 @@ export default function Home() {
     <div>
 
         <MainCarousel/>    
-        <div className='d-flex gap-3'>
-            
-        {myProductArr.map((item) => <Item  key={item.id}  item={item}/> )}
-        </div>
+        <ShoppingList/>
     </div>
     )
 }

@@ -16,6 +16,7 @@ export default function Item({ item }) {
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const [width, setWidth] = useState('200px');
   const {
     palette: { neutral },
   } = useTheme();
@@ -23,7 +24,7 @@ export default function Item({ item }) {
   const {
     data: {
       attributes: {
-        format: {
+        formats: {
           medium: { url },
         },
       },
