@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Item from '../../../components/productCard/Item'
-import { setItems } from '../../../state'
+import Item from '../../components/productCard/Item'
+import { setItems } from '../../state'
 import { useNavigate } from 'react-router-dom'
-import { useMediaQuery } from '@mui/material'
+import { Box, useMediaQuery } from '@mui/material'
 
 export default function ShoppingList() {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const items = useSelector(state => state.cart.items)
-    console.log("🚀 ~ file: ShoppingList.jsx:12 ~ ShoppingList ~ items:", items)
     const isNonMobile = useMediaQuery('(min-width:600px)')
 
     const [value, setValue] = useState()
@@ -37,8 +35,13 @@ export default function ShoppingList() {
     
 
   return (
-    <div>
-      {items.map(item => <Item item={item}/>)}
-    </div>
+    <Box 
+    display = 'flex'
+    flex-wrap = "wrap"
+    justifyContent= 'space-between'
+    width= "100%"
+    >
+      {items.map(item => <Item key={item.id} item={item}/>)}
+    </Box>
   )
 }

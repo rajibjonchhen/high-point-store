@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import './home.scss'
-import MainCarousel from './mainCarousel/MainCarousel'
+import MainCarousel from './MainCarousel'
 import Item from '../../components/productCard/Item'
-import ShoppingList from './shoppingList/ShoppingList'
+import ShoppingList from './ShoppingList'
 
 
 export default function Home() {
@@ -32,8 +32,7 @@ export default function Home() {
       const myProductArr= [
       ]
     return (
-    <div>
-
+    <div className = "home">
         <MainCarousel/>    
         <ShoppingList/>
     </div>

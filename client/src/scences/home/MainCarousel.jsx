@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import './mainCarousel.scss'
+import './mainCarousel/mainCarousel.scss'
 import  {Carousel} from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' 
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import { Box, Button, IconButton, Typography, useMediaQuery } from '@mui/material'
-import {shades} from '../../../theme'
-import image1 from '../../../assets/ayo-ogunseinde-975db4eBky0-unsplash.jpeg'
-import image2 from '../../../assets/christopher-campbell-kFCdfLbu6zA-unsplash.jpeg'
-import image3 from '../../../assets/eli-defaria-oV4PktGcXCs-unsplash.jpeg'
-import image4 from '../../../assets/marco-lastella-tLqzaCqn5kI-unsplash.jpeg'
-import image5 from '../../../assets/rodolfo-sanches-carvalho-DdOl2jwEVls-unsplash.jpeg'
-import image6 from '../../../assets/tamara-bellis-zPaxtDNtvCQ-unsplash.jpeg'
+import {shades} from '../../theme.js'
+import image1 from '../../assets/ayo-ogunseinde-975db4eBky0-unsplash.jpeg'
+import image2 from '../../assets/christopher-campbell-kFCdfLbu6zA-unsplash.jpeg'
+import image3 from '../../assets/eli-defaria-oV4PktGcXCs-unsplash.jpeg'
+import image4 from '../../assets/marco-lastella-tLqzaCqn5kI-unsplash.jpeg'
+import image5 from '../../assets/rodolfo-sanches-carvalho-DdOl2jwEVls-unsplash.jpeg'
+import image6 from '../../assets/tamara-bellis-zPaxtDNtvCQ-unsplash.jpeg'
+
 // const importAll = (r) => r.keys().reduce((acc, item) => {
 //   acc[item.replace('./','')] = r(item);
 //     return acc;
