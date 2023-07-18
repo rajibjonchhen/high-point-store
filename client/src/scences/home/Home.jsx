@@ -7,7 +7,6 @@ import ShoppingList from './ShoppingList'
 
 export default function Home() {
     useEffect(()=>{
-        console.log("hello home")
       },[])
 
       const sampleProduct = {

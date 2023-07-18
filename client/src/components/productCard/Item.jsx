@@ -30,7 +30,6 @@ export default function Item({ item }) {
               },
             },
           } = image;
-          console.log("🚀 ~ file: Item.jsx:34 ~ Item ~ image:" + `http//:localhost:1337${url}`)
           
         
   return (
