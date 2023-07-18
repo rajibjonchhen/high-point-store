@@ -35,9 +35,9 @@ export default function ShoppingList() {
       }
       
 
-      const jeans = items.filter(item => item.attributes.category === "jeans")
-      const glasses = items.filter(item => item.attributes.category === "glasses")
-      const pants = items.filter(item => item.attributes.category === "pants")
+      const topseller = items.filter(item => item.attributes.category === "top seller")
+      const trending = items.filter(item => item.attributes.category === "trending")
+      const newarrival = items.filter(item => item.attributes.category === "new arrival")
       const tShirt = items.filter(item => item.attributes.category === "t-shirt")
     
 
@@ -59,10 +59,9 @@ export default function ShoppingList() {
     }}}
       >
         <Tab label='All' value = 'all'></Tab>
-        <Tab label='Jeans' value = 'jeans'></Tab>
-        <Tab label='pants' value = 'pants'></Tab>
-        <Tab label='Glasses' value = 'glasses'></Tab>
-        <Tab label='T-shirt' value = 't-shirt'></Tab>
+        <Tab label='top seller' value = 'top seller'></Tab>
+        <Tab label='new arrival' value = 'new arrival'></Tab>
+        <Tab label='trending' value = 'trending'></Tab>
 
       </Tabs>
       <Box
