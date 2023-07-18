@@ -16,20 +16,22 @@ export default function Item({ item }) {
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const [width, setWidth] = useState('100px');
   const {
     palette: { neutral },
   } = useTheme();
   const { name, id, price, image, category } = item.attributes;
   const {
-    data: {
-      attributes: {
-        format: {
-          medium: { url },
-        },
-      },
-    },
-  } = image;
-
+      data: {
+          attributes: {
+              formats: {
+                  medium: { url },
+                },
+              },
+            },
+          } = image;
+          
+        
   return (
     <Box width={width}>
       <Box
@@ -40,7 +42,7 @@ export default function Item({ item }) {
         <img
           width="300px"
           height="400px"
-          src={`http//:localhost:1337${url}`}
+          src={`http://localhost:1337${url}`}
           onClick={() => navigate(ConstRoutes.detail.url(id))}
           style={{ cursor: "pointer" }}
         />
@@ -48,7 +50,9 @@ export default function Item({ item }) {
           display={isHovered ? "block" : "none"}
           position="absolute"
           bottom="10%"
-          left="0"
+          left="50%"
+          right="50%"
+          margin-left = "-50%"
           width="100%"
           padding="0 5%"
         >
@@ -77,7 +81,9 @@ export default function Item({ item }) {
             </Box>
             <Button onClick={() => dispatch(addToCart({item : {...item, count}}))}
             sx = {{ backgroundColor : shades.primary[300], color : 'white'}}
-            ></Button>
+            >
+              <ShoppingCart/>
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -86,7 +92,7 @@ export default function Item({ item }) {
           {category.replace(/([A-Z])/g, '$1').replace(/^./,(str) => str.toUpperCase()) }
         </Typography>
         <Typography>{name}</Typography>
-        <Typography fontWeight = 'bold'>{price}</Typography>
+        <Typography fontWeight = 'bold'>€ {price}</Typography>
       </Box>
     </Box>
   );

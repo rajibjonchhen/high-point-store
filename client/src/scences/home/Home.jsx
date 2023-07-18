@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import './home.scss'
-import MainCarousel from './mainCarousel/MainCarousel'
+import MainCarousel from './MainCarousel'
 import Item from '../../components/productCard/Item'
+import ShoppingList from './ShoppingList'
 
 
 export default function Home() {
     useEffect(()=>{
-        console.log("hello home")
       },[])
 
       const sampleProduct = {
@@ -31,13 +31,9 @@ export default function Home() {
       const myProductArr= [
       ]
     return (
-    <div>
-
+    <div className = "home">
         <MainCarousel/>    
-        <div className='d-flex gap-3'>
-            
-        {myProductArr.map((item) => <Item  key={item.id}  item={item}/> )}
-        </div>
+        <ShoppingList/>
     </div>
     )
 }
