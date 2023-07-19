@@ -38,11 +38,9 @@
     "category": {
       "type": "enumeration",
       "enum": [
-        "glasses",
-        "t-shirt",
-        "pants",
-        "bags",
-        "jeans"
+        "new arrival",
+        "trending",
+        "top seller"
       ]
     }
   }

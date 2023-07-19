@@ -10,35 +10,32 @@ export default function ShoppingList() {
     const items = useSelector(state => state.cart.items)
     const isNonMobile = useMediaQuery('(min-width:600px)')
 
-    const [value, setValue] = useState('all')
+    const [value, setValue] = useState('')
+    const [displayItems, setDisplayItems] = useState([])
 
     const handleChange = (event, newValue) => {
       console.log(newValue)
       setValue(newValue)
-      if(newValue === 'all'){
-        dispatch(setItems([...allProducts]))
-      }else{
-        dispatch(setItems(items.filter(item => item.attributes.category === newValue)))
-      }
     }
     useEffect(() => {
-          getItems()
+          getItems("")
       }, [])
 
+    useEffect(() => {
+      getItems(value)
+    }, [value])
 
-      async function getItems(){
+      async function getItems(filter){
+        console.log("🚀 ~ file: ShoppingList.jsx:29 ~ getItems ~ filter:", filter)
         const allProducts = await fetch("http://localhost:1337/api/items?populate=image",{
           method : "Get"
         })
         const allProductsJson = await allProducts.json()
-        dispatch(setItems(allProductsJson.data))
+        dispatch(setItems(allProductsJson))
+        const filteredItems = allProductsJson.data.filter(item => item.attributes.category.includes(filter))
+        console.log("🚀 ~ file: ShoppingList.jsx:34 ~ getItems ~ filteredItems:", filteredItems)
+        setDisplayItems(filteredItems)
       }
-      
-
-      const jeans = items.filter(item => item.attributes.category === "jeans")
-      const glasses = items.filter(item => item.attributes.category === "glasses")
-      const pants = items.filter(item => item.attributes.category === "pants")
-      const tShirt = items.filter(item => item.attributes.category === "t-shirt")
     
 
   return (
@@ -52,17 +49,16 @@ export default function ShoppingList() {
       value = {value}
       onChange = {handleChange}
       centered
-      tabsIndicatorProps = {{sx:{display : isNonMobile? 'block' : 'none'}}}
+      TabIndicatorProps = {{sx:{display : isNonMobile? 'block' : 'none'}}}
       sx = {{m : '25px',
     '& .MuiTabs-flexContainer' :{
       flexWrap : "wrap"
     }}}
       >
-        <Tab label='All' value = 'all'></Tab>
-        <Tab label='Jeans' value = 'jeans'></Tab>
-        <Tab label='pants' value = 'pants'></Tab>
-        <Tab label='Glasses' value = 'glasses'></Tab>
-        <Tab label='T-shirt' value = 't-shirt'></Tab>
+        <Tab label='All' value = ''></Tab>
+        <Tab label='top seller' value = 'top seller'></Tab>
+        <Tab label='new arrival' value = 'new arrival'></Tab>
+        <Tab label='trending' value = 'trending'></Tab>
 
       </Tabs>
       <Box
@@ -73,7 +69,7 @@ export default function ShoppingList() {
       rowGap = '20px'
       columnGap = '1.33%'
       >
-      {items.map(item => <Item key={item.id} item={item}/>)}
+      {displayItems.map((item, index) => <Item key={index} item={item}/>)}
         
 
       </Box>

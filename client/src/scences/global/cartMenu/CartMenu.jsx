@@ -61,7 +61,7 @@ export default function CartMenu() {
 
           {/* List of Items in the cart */}
           <Box>
-            {cart.map((item) => (
+            {cart.length && cart.map((item) => (
               <Box key={`${item?.attributes?.name}-${item?.id}`}>
                 <FlexBox p="15px 0">
                   <Box flex=" 1 1 40%">
@@ -69,7 +69,8 @@ export default function CartMenu() {
                       alt={item?.name}
                       width="124px"
                       height="164px"
-                      src={`http:localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                      src={`http://localhost:1337${item.attributes.image.data.attributes.formats.small.url}`}
+                                                              
                     />
                   </Box>
                   <Box flex=" 1 1 60%">
