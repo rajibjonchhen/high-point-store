@@ -11,12 +11,11 @@ import { ConstRoutes } from "../../constant/ConstRoutes";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-export default function Item({ item }) {
+export default function Item({ item, width }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-  const [width, setWidth] = useState('100px');
   const {
     palette: { neutral },
   } = useTheme();
@@ -49,10 +48,8 @@ export default function Item({ item }) {
         <Box
           display={isHovered ? "block" : "none"}
           position="absolute"
-          bottom="10%"
-          left="50%"
-          right="50%"
-          margin-left = "-50%"
+          bottom="15px"
+          left="0%"
           width="100%"
           padding="0 5%"
         >
@@ -69,15 +66,15 @@ export default function Item({ item }) {
                           }
                         >
                           <RemoveIcon />
-                        </IconButton>
-                        <Typography>{count}</Typography>
-                        <IconButton
-                          onClick={() =>
-                            setCount(count + 1)
-                          }
-                        >
-                          <AddIcon />
-                        </IconButton>
+               </IconButton>
+                <Typography>{count}</Typography>
+                <IconButton
+                  onClick={() =>
+                    setCount(count + 1)
+                  }
+                >
+                  <AddIcon />
+                </IconButton>
             </Box>
             <Button onClick={() => dispatch(addToCart({item : {...item, count}}))}
             sx = {{ backgroundColor : shades.primary[300], color : 'white'}}

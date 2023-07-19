@@ -36,15 +36,6 @@ export default function ShoppingList() {
         console.log("🚀 ~ file: ShoppingList.jsx:34 ~ getItems ~ filteredItems:", filteredItems)
         setDisplayItems(filteredItems)
       }
-      
-
-      // const topseller = items.filter(item => {
-      //   console.log("🚀 ~ file: ShoppingList.jsx:43 ~ ShoppingList ~ item:", item)
-      //   return item?.attributes?.category === "top seller"
-      // })
-      // const trending = items.filter(item => item?.attributes?.category === "trending")
-      // const newarrival = items.filter(item => item?.attributes?.category === "new arrival")
-      // const tShirt = items.filter(item => item?.attributes?.category === "t-shirt")
     
 
   return (

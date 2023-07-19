@@ -3,6 +3,7 @@ import './home.scss'
 import MainCarousel from './MainCarousel'
 import Item from '../../components/productCard/Item'
 import ShoppingList from './ShoppingList'
+import Subscribe from './Subscribe'
 
 
 export default function Home() {
@@ -34,6 +35,7 @@ export default function Home() {
     <div className = "home">
         <MainCarousel/>    
         <ShoppingList/>
+        <Subscribe/>
     </div>
     )
 }
