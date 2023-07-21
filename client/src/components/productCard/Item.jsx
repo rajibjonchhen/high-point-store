@@ -42,7 +42,7 @@ export default function Item({ item, width }) {
           width="300px"
           height="400px"
           src={`http://localhost:1337${url}`}
-          onClick={() => navigate(ConstRoutes.detail.url(id))}
+          onClick={() => navigate(ConstRoutes.itemDetail.url(item.id))}
           style={{ cursor: "pointer" }}
         />
         <Box

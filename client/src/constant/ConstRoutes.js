@@ -3,9 +3,9 @@ export const ConstRoutes = {
         url : () => `/`,
         path : '/'
     },
-    detail : {
-        url : (id) => `/detail/${id}`,
-        path : '/detail/:id'
+    itemDetail : {
+        url : (id) => `/detail/${itemId}`,
+        path : '/detail/:itemId'
     },
     checkout : {
         url : () => `/checkout`,
