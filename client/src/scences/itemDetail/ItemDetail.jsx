@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { ShoppingCart } from "@mui/icons-material";
+import { ShoppingCart, ShoppingCartOutlined } from "@mui/icons-material";
 
 import { addToCart, decrementCount, incrementCount } from "../../state";
 import { shades } from "../../theme";
@@ -23,6 +23,7 @@ export default function ItemDetail() {
   const { itemId } = useParams();
   const [item, setItem] = useState({});
   const [relItems, setRelItems] = useState([]);
+  const [count, setCount] = useState(1)
 
   useEffect(() => {
     getItemDetail();
@@ -92,10 +93,10 @@ export default function ItemDetail() {
                 € {item?.attributes?.longDescription}
               </Typography>
             </Box>
-            <Box display="flex" justifyContent="center" minHeight="50px">
+            <Box display = "flex" alignItems = "center" minHeight="50px">
               <Box
-                display="flex"
-                justifyContent="center"
+                display = "flex"
+                alignItems = "center"
                 border={`1.5px solid ${shades.neutral[300]}`}
                 mr="20px"
                 p="2px 5px"
@@ -103,11 +104,21 @@ export default function ItemDetail() {
                 <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
                   <RemoveIcon />
                 </IconButton>
-                <Typography>{count}</Typography>
+                <Typography sx = {{p : '0 5px'}}>{count}</Typography>
                 <IconButton onClick={() => setCount(count + 1)}>
                   <AddIcon />
                 </IconButton>
               </Box>
+              <Button 
+              onClick={() => dispatch(addToCart({item : {...item, count}}))}
+              sx = {{
+                backgroundColor : '#222222',
+                color : 'white',
+                borderRadius : 0,
+                minWidth : '150px',
+                padding : '10px 40px'
+              }}
+              >Add to cart  <ShoppingCartOutlined/></Button>
             </Box>
           </Box>
         </Box>
