@@ -7,10 +7,12 @@ import {
   Button,
   useTheme,
   getListItemSecondaryActionClassesUtilityClass,
+  Tabs,
+  Tab
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { ShoppingCart, ShoppingCartOutlined } from "@mui/icons-material";
+import { FavoriteBorderOutlined, FavoriteOutlined, ShoppingCart, ShoppingCartOutlined } from "@mui/icons-material";
 
 import { addToCart, decrementCount, incrementCount } from "../../state";
 import { shades } from "../../theme";
@@ -24,6 +26,8 @@ export default function ItemDetail() {
   const [item, setItem] = useState({});
   const [relItems, setRelItems] = useState([]);
   const [count, setCount] = useState(1)
+  const [isFavourite, setIsFavourite] = useState(false)
+  const [tabValue, setTabValue] = useState("description")
 
   useEffect(() => {
     getItemDetail();
@@ -48,6 +52,9 @@ export default function ItemDetail() {
     );
   }
 
+  const handleTab = (e, newValue) => {
+    setTabValue(newValue)
+  }
   async function getItems() {
     console.log("🚀 ~ file: ShoppingList.jsx:29 ~ getItems ~ filter:");
     const allProducts = await fetch(
@@ -71,6 +78,7 @@ export default function ItemDetail() {
   return (
     item && (
       <Box width="80%" m="80px auto">
+        {/* image and the description */}
         <Box display="flex" flexWrap="wrap" columnGap="40px">
           <Box flex="1 1 40%" mb="40px">
             <img
@@ -120,8 +128,40 @@ export default function ItemDetail() {
               }}
               >Add to cart  <ShoppingCartOutlined/></Button>
             </Box>
+            <Box>
+              <Box m = '20px 0 5px 0'  display = 'flex' sx={{cursor : 'pointer'}} onClick={() => setIsFavourite(!isFavourite)}>
+                <Box sx={{color : 'red'}} >
+                  {isFavourite? 
+                <Typography sx = {{ml : '5px'}}>
+                  <FavoriteOutlined />
+                    Remove from wishlist
+                </Typography>
+                  :<Typography sx = {{ml : '5px'}}>
+                  <FavoriteBorderOutlined />
+                  Add to wishlist
+                </Typography>
+                  }
+                </Box>
+              </Box>
+            </Box>
           </Box>
         </Box>
+
+        {/* information and description */}
+      <Box m = '20px 0'>
+        <Tabs value = {tabValue} onChange={handleTab}>
+          <Tab label = 'Description' value = 'description'/>
+          <Tab label =  'Reviews' value = 'reviews' />
+        </Tabs>
+      </Box>
+
+      <Box display= 'flex' flexWrap = 'wrap' gap = '15px'>
+        {tabValue === 'reviews'? <div>reviews</div>
+        : <div>{item?.attributes?.longDescription}</div>
+        }
+
+      </Box>
+
       </Box>
     )
   );

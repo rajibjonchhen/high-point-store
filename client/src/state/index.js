@@ -14,13 +14,10 @@ export const cartSlice = createSlice({
     },
 
     addToCart: (state, action) => {
-      console.log(action.payload.item)
       const index = state.cart.findIndex(item => item.id === action.payload.item.id)
       if(index > -1){ 
         state.cart[index] = {...state.cart[index], count :state.cart[index].count + action.payload.item.count}
-
       }else {
-        console.log("🚀 ~ file: index.js:19 ~ addig it now:")
         state.cart = [...state.cart, action.payload.item];
       }
     },
