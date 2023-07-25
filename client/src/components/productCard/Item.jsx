@@ -39,8 +39,8 @@ export default function Item({ item, width }) {
         onMouseOut={() => setIsHovered(false)}
       >
         <img
-          width="300px"
-          height="400px"
+          width="200px"
+          height="270px"
           src={`http://localhost:1337${url}`}
           onClick={() => navigate(ConstRoutes.itemDetail.url(item.id))}
           style={{ cursor: "pointer" }}
