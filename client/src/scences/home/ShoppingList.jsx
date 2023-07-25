@@ -64,12 +64,12 @@ export default function ShoppingList() {
       <Box
       margin = '0 auto'
       display = 'grid'
-      gridTemplateColumns = 'repeat(auto-fill , 300px)'
+      gridTemplateColumns = 'repeat(auto-fill , 200px)'
       justifyContent = 'space-around'
       rowGap = '20px'
       columnGap = '1.33%'
       >
-      {displayItems.map((item, index) => <Item key={index} item={item}/>)}
+      {displayItems.map((item, index) => <Item key={index} item={item} width = '100px' />)}
         
 
       </Box>

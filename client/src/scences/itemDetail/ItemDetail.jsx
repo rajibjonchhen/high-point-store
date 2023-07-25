@@ -19,6 +19,7 @@ import { shades } from "../../theme";
 import { ConstRoutes } from "../../constant/ConstRoutes";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Item from "../../components/productCard/Item";
 
 export default function ItemDetail() {
   const dispatch = useDispatch();
@@ -159,9 +160,20 @@ export default function ItemDetail() {
         {tabValue === 'reviews'? <div>reviews</div>
         : <div>{item?.attributes?.longDescription}</div>
         }
-
       </Box>
-
+      <Box mt = '50px' width ='100%'>
+        <Typography variant="h3" fontWeight="bold" >Related Productes</Typography>
+        <Box
+        margin = '0 auto'
+      display = 'grid'
+      gridTemplateColumns = 'repeat(auto-fill , 200px)'
+      justifyContent = 'space-around'
+      rowGap = '20px'
+      columnGap = '1.33%'
+        >
+          {relItems.slice(0, 4).map(item => <Item key = {`${item.attributes.name}`} item={item}/>)}
+        </Box>
+      </Box>
       </Box>
     )
   );
