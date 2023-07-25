@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { ConstRoutes } from "../../../constant/ConstRoutes";
@@ -19,6 +19,19 @@ export default function Navbar() {
   const navigate = useNavigate();
   const dispatch  = useDispatch();
   const cart = useSelector(state => state.cart.cart)
+  const [totalItems, setTotalItems] = useState(0)
+
+  useEffect(() => {
+    
+// 0 + 1 + 2 + 3 + 4
+const initialValue = 0;
+const sumWithInitial = cart.reduce(
+  (accumulator, currentValue) => accumulator + currentValue.count,
+  initialValue
+);
+
+setTotalItems(sumWithInitial);
+  },[cart])
   return (
     <Box
       display="flex"
@@ -77,7 +90,7 @@ export default function Navbar() {
               <PersonOutlined/>
             </IconButton>
             <Badge
-            badgeContent = {cart.length}
+            badgeContent = {totalItems}
             color = "secondary"
             invisible = {!cart.length}
             sx = {{
