@@ -16,8 +16,9 @@ import {
 } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { shades } from '../../theme'
+import Shipping from './Shipping'
 
-const initialValue = {
+const initialValues = {
   billingAddress  : {
     firstName :"",
     lastName:"",
@@ -43,7 +44,7 @@ const initialValue = {
   phoneNumber : ""
 }
 
-const checkOnSchema = [yup.object().shape({billingAddress : yup.object().shape({
+const checkOutSchema = [yup.object().shape({billingAddress : yup.object().shape({
   firstName : yup.string().required("required"),
     lastName : yup.string().required("required"),
     country : yup.string().required("required"),
@@ -63,7 +64,12 @@ yup.object().shape({shippingAddress : yup.object().shape({
     city : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
     state : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
     zipCode : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
-})})
+})
+}),
+yup.object().shape({
+  email : yup.string().required("required"),
+  phoneNumber : yup.string().required("required")
+})
 ]
 
 export default function CheckOut() {
@@ -93,9 +99,25 @@ async function makePayment(values){
           <Formik
           onSubmit = {handleFormSubmit}
           initialValues={initialValues}
-          validationSchema={}
+          validationSchema={checkOutSchema[activeStep]}
           >
-
+            {({
+              values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue
+            }) => (
+            <form onSubmit = {handleSubmit}>
+                {isFirstStep && 
+              <Shipping 
+                values ={values} 
+                errors={errors} 
+                touched={touched} 
+                handleBlur ={handleBlur} 
+                handleChange={handleChange} 
+                handleSubmit={handleSubmit} 
+                setFieldValue={setFieldValue} 
+                />
+                }
+            </form>
+            )}
           </Formik>
         </Box>
     </Box>

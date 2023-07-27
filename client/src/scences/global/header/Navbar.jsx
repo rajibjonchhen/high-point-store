@@ -22,9 +22,8 @@ export default function Navbar() {
   const [totalItems, setTotalItems] = useState(0)
 
   useEffect(() => {
-    
-// 0 + 1 + 2 + 3 + 4
-const initialValue = 0;
+  
+    const initialValue = 0;
 const sumWithInitial = cart.reduce(
   (accumulator, currentValue) => accumulator + currentValue.count,
   initialValue
