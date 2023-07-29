@@ -40,7 +40,7 @@ setTotalItems(sumWithInitial);
       position="sticky"
       top="0"
       left="0"
-      zIndex="1"
+      zIndex="10"
       color="black"
       backgroundColor="rgb(255, 255, 255, 0.95)"
     >
