@@ -18,7 +18,9 @@ import { useSelector } from 'react-redux';
 import { shades } from '../../theme'
 import Shipping from './Shipping'
 import Payment from './Payment'
+import {loadStripe} from '@stripe/stripe-js'
 
+const stripePromise = loadStripe('pk_test_51NZEN1DNxHz5g8S8fTqAlTLDOrVUHuowZWb3AmQlD0iIMb3yYxErAT3uSST0pFhShJswQw10ucVMB0YL22LpTO2U00gVvPRupn')
 const initialValues = {
   billingAddress  : {
     firstName :"",
@@ -75,22 +77,23 @@ yup.object().shape({
 
 export default function CheckOut() {
 const cart = useSelector(state => state.cart.cart)
-const [activeStep,setActiveStep] = useState(0)
-let isFirstStep = activeStep === 0
-let isSecondStep = activeStep === 1
+const [activeStep,setActiveStep] = useState(1)
 
 const handleFormSubmit = async(values, actions) =>  {
+  localStorage.setItem("actions","actions")
+  localStorage.setItem("values", "{values}")
+  console.log("next clicked")
   setActiveStep(activeStep+1)
 
   // 
-  if(isFirstStep && values.shippingAddress.isSameAddress){
+  if(activeStep === 1 && values.shippingAddress.isSameAddress){
     actions.setFieldValue("shippingAddress", {
       ...values.billingAddress,
       isSameAddress : true
     })
   }
 
-  if(isSecondStep){
+  if(activeStep === 2){
     makePayment(values)
   }
 
@@ -98,8 +101,29 @@ const handleFormSubmit = async(values, actions) =>  {
 }
 
 async function makePayment(values){
+  const stripe = await stripePromise
+  const requestBody = {
+    userName : [values.firstName, values.secondName].join(" "),
+    email : values.email,
+    products : cart.map(({id, count}) => ({
+      id,
+      count
+    }))
+  }
+  const response = await fetch("http://localhost:1337/api/orders", {
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(requestBody)
+  });
+  const session = await response.json();
+  await stripe.redirectToCheckout({
+    sessionId : session.id
+  })
+
 
 }
+
+
   return (
     <Box width = '80%' m = '100px auto'>
         <Stepper>
@@ -125,8 +149,8 @@ async function makePayment(values){
               handleSubmit, 
               setFieldValue
             }) => (
-            <form onSubmit = {handleSubmit}>
-                {isFirstStep && 
+            <form onSubmit = {handleFormSubmit}>
+                {activeStep === 1 && 
               <Shipping 
                 values ={values} 
                 errors={errors} 
@@ -137,9 +161,18 @@ async function makePayment(values){
                 setFieldValue={setFieldValue} 
                 />
                 }
-                {isSecondStep && <Payment/>}
+                {activeStep === 2 && 
+                <Payment
+                values ={values} 
+                errors={errors} 
+                touched={touched} 
+                handleBlur ={handleBlur} 
+                handleChange={handleChange} 
+                handleSubmit={handleSubmit} 
+                setFieldValue={setFieldValue} 
+                />}
                 <Box display = 'flex' justifyContent= 'space-between' gap = '50px'>
-                  {isSecondStep && (
+                  {activeStep === 2 && (
                     <Button
                     fullWidth
                     variant='contained'
@@ -166,8 +199,7 @@ async function makePayment(values){
                       borderRadius : 0,
                       padding : '15px 40px'
                     }}
-                    onClick = {() => setActiveStep(activeStep + 1)}
-                    >{isFirstStep? "Next" : "Place Order"}</Button>
+                    >{activeStep === 1? "Next" : "Place Order"}</Button>
                 </Box>
             </form>
             )}

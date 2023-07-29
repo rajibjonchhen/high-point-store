@@ -66,6 +66,7 @@ export default function AddressForm({type, values, errors, touched, handleBlur, 
             gridColumn:"span 2",
         },
     ]
+
     return (
     <Box 
     display = "grid"
@@ -73,7 +74,7 @@ export default function AddressForm({type, values, errors, touched, handleBlur, 
     gridTemplateColumns = 'repeat(4, minmax(0, 1fr))'
     sx = {{'& >div' :{gridColumn : isNonMobil? undefined : 'span 4'}}}
     >
-        {   formElements.map((element) => <TextField 
+        {   formElements.map((element) => <TextField key = {element.name}
             fullWidth
             type={element.type}
             label = {element.label}
@@ -86,19 +87,6 @@ export default function AddressForm({type, values, errors, touched, handleBlur, 
             sx = {{gridColumn : element.gridColumn
         }}
             /> )}
-
-        {/* <TextField 
-        fullWidth
-        type='text'
-        label = 'First Name'
-        onBlur={handleBlur}
-        onChange={handleChange}
-        value = {values.firstName}
-        name = {formattedName('firstName')}
-        error = {formattedError('firstName')}
-        helperText = {formattedHelper('firstName')}
-        sx = {{gridColumn : 'span 2', margin : '15px'}}
-        /> */}
         
     </Box>
   )
