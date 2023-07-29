@@ -13,7 +13,7 @@ export default function Shipping({values, errors, touched, handleBlur, handleCha
     <Box m = '30px auto'>
          <Box>
             <Typography sx = {{mb : '15px'}} fontSize= '18px'>Billing Information</Typography>
-            {/* <AddressForm
+            <AddressForm
                 type = "billingAddress"
                 values = {values.billingAddress} 
                 errors = {errors}
@@ -21,21 +21,21 @@ export default function Shipping({values, errors, touched, handleBlur, handleCha
                 handleBlur ={handleBlur} 
                 handleChange={handleChange} 
                 handleSubmit={handleSubmit} 
-            /> */}
+            />
         </Box>
         <Box mb = '20px'>
-            {/* <FormControlLabel control={<Checkbox 
-            defaultChecked 
+            <FormControlLabel control={<Checkbox 
+             
             value = {values.shippingAddress.isSameAddress}
-            onChange = {
+            onChange = {() =>
                 setFieldValue("shippingAddress.isSameAddress",!values.shippingAddress.isSameAddress)
             }
-            />}/> */}
+            />}/> Is the Shipping Address the same as the Billing Address
         </Box>
-        {!values.shippingAddress.isSameAddress && (
+        {values.shippingAddress.isSameAddress && (
         <Box>
-            <Typography>Shipping Address</Typography>
-            {/* <AddressForm
+            <Typography  sx = {{mb : '15px'}} fontSize= '18px'>Shipping Address</Typography>
+            <AddressForm
                 type = "billingAddress"
                 values = {values.billingAddress} 
                 errors = {errors}
@@ -43,7 +43,7 @@ export default function Shipping({values, errors, touched, handleBlur, handleCha
                 handleBlur ={handleBlur} 
                 handleChange={handleChange} 
                 handleSubmit={handleSubmit} 
-            /> */}
+            />
         </Box>
         )} 
     </Box>

@@ -55,8 +55,8 @@ const checkOutSchema = [yup.object().shape({billingAddress : yup.object().shape(
     zipCode : yup.string().required("required"),
 })}),
 yup.object().shape({shippingAddress : yup.object().shape({
-  isSameAddress : yup.boolean(),
-  firstName : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
+    isSameAddress : yup.boolean(),
+    firstName : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
     lastName : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
     country : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
     street1 : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
@@ -73,7 +73,7 @@ yup.object().shape({
 ]
 
 export default function CheckOut() {
-  const cart = useSelector(state => state.cart.cart)
+const cart = useSelector(state => state.cart.cart)
 const [activeStep,setActiveStep] = useState(0)
 let isFirstStep = activeStep === 0
 let isSecondStep = activeStep === 1
@@ -98,11 +98,17 @@ async function makePayment(values){
         <Box>
           <Formik
           onSubmit = {handleFormSubmit}
-          initialValues={initialValues}
-          validationSchema={checkOutSchema[activeStep]}
+          initialValues = {initialValues}
+          validationSchema = {checkOutSchema[activeStep]}
           >
             {({
-              values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue
+              values, 
+              errors, 
+              touched, 
+              handleBlur, 
+              handleChange, 
+              handleSubmit, 
+              setFieldValue
             }) => (
             <form onSubmit = {handleSubmit}>
                 {isFirstStep && 
