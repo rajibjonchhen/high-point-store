@@ -9,7 +9,7 @@ export default function Payment({values, touched, errors, handleBlur, handleChan
             <Typography sx = {{mb : "15px"}} fontSize = "18px"> Contact Info</Typography>
             <TextField 
         fullWidth
-        type='text'
+        type='email'
         label = 'Email'
         onBlur={handleBlur}
         onChange={handleChange}

@@ -11,9 +11,13 @@ export const ConstRoutes = {
         url : () => `/checkout`,
         path : '/checkout'
     },
-    confirmation : {
+    success : {
         url : () => `/checkout/success`,
         path : '/checkout/success'
+    },
+    unsuccess : {
+        url : () => `/checkout/cancel`,
+        path :  `/checkout/cancel`,
     }
 
 }

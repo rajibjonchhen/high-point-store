@@ -80,11 +80,8 @@ const cart = useSelector(state => state.cart.cart)
 const [activeStep,setActiveStep] = useState(1)
 
 const handleFormSubmit = async(values, actions) =>  {
-  localStorage.setItem("actions","actions")
-  localStorage.setItem("values", "{values}")
-  console.log("next clicked")
-  setActiveStep(activeStep+1)
 
+  setActiveStep(activeStep+1)
   // 
   if(activeStep === 1 && values.shippingAddress.isSameAddress){
     actions.setFieldValue("shippingAddress", {
@@ -92,11 +89,9 @@ const handleFormSubmit = async(values, actions) =>  {
       isSameAddress : true
     })
   }
-
   if(activeStep === 2){
     makePayment(values)
   }
-
   actions.setTouched({})
 }
 
@@ -107,7 +102,7 @@ async function makePayment(values){
     email : values.email,
     products : cart.map(({id, count}) => ({
       id,
-      count
+      count,
     }))
   }
   const response = await fetch("http://localhost:1337/api/orders", {
@@ -116,6 +111,7 @@ async function makePayment(values){
     body : JSON.stringify(requestBody)
   });
   const session = await response.json();
+  console.log("make payment session" , session)
   await stripe.redirectToCheckout({
     sessionId : session.id
   })
@@ -149,7 +145,7 @@ async function makePayment(values){
               handleSubmit, 
               setFieldValue
             }) => (
-            <form onSubmit = {handleFormSubmit}>
+            <form onSubmit = {handleSubmit}>
                 {activeStep === 1 && 
               <Shipping 
                 values ={values} 

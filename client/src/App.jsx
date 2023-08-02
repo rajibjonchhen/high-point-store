@@ -8,8 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ConstRoutes } from './constant/ConstRoutes'
 import { useEffect } from 'react'
 import CheckOut from './scences/checkOut/CheckOut'
-import Confirmation from './scences/checkOut/Confirmation'
 import CartMenu from './scences/global/cartMenu/CartMenu'
+import Success from './scences/checkOut/Success'
+import Cancel from './scences/checkOut/Cancel'
 
 const ScrollToTop = () => {
   const {pathname} = useLocation()
@@ -33,7 +34,8 @@ function App() {
       <Route  path = { ConstRoutes.home.path } element = { <Home/> } />
       <Route  path = { ConstRoutes.itemDetail.path } element = { <ItemDetail/> } />
       <Route path = { ConstRoutes.checkout.path } element = { <CheckOut/> }  />
-      <Route path = { ConstRoutes.confirmation.path } element  = { <Confirmation/> } />
+      <Route path = { ConstRoutes.success.path } element  = { <Success/> } />
+      <Route path = { ConstRoutes.unsuccess.path } element  = { <Cancel/> } />
     </Routes>
     <CartMenu/>
     <Footer/>
