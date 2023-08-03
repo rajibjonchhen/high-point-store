@@ -4,6 +4,7 @@ const initialState = {
   isCartOpen: false,
   cart: [],
   items: [],
+  favourites : []
 };
 export const cartSlice = createSlice({
   name: "cart",
@@ -12,7 +13,14 @@ export const cartSlice = createSlice({
     setItems: (state, action) => {
       state.items = action.payload;
     },
-
+    addRemoveToFavourite : (state, action) => {
+      const reqIndex = state.favourites.findIndex(item => item.id === action.payload.item.id)
+      if(reqIndex < 0){
+        state.favourites = [...state.favourites, action.payload.item]
+      }else {
+        state.favourites = state.favourites.filter((item, index) => reqIndex !== index)
+      }
+    },
     addToCart: (state, action) => {
       const index = state.cart.findIndex(item => item.id === action.payload.item.id)
       if(index > -1){ 
@@ -50,6 +58,7 @@ export const {
   setItems,
   addToCart,
   removeFromCart,
+  addRemoveToFavourite,
   incrementCount,
   decrementCount,
   setIsCartOpen,
