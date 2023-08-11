@@ -6,7 +6,6 @@ import {
   Typography,
   Button,
   useTheme,
-  getListItemSecondaryActionClassesUtilityClass,
   Tabs,
   Tab
 } from "@mui/material";
@@ -14,11 +13,11 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { FavoriteBorderOutlined, FavoriteOutlined, ShoppingCart, ShoppingCartOutlined } from "@mui/icons-material";
 
-import { addToCart, decrementCount, incrementCount } from "../../state";
+import { addRemoveToFavourite, addToCart, decrementCount, incrementCount } from "../../state";
 import { shades } from "../../theme";
 import { ConstRoutes } from "../../constant/ConstRoutes";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Item from "../../components/productCard/Item";
 
 export default function ItemDetail() {
@@ -29,10 +28,14 @@ export default function ItemDetail() {
   const [count, setCount] = useState(1)
   const [isFavourite, setIsFavourite] = useState(false)
   const [tabValue, setTabValue] = useState("description")
-
+  const favourites = useSelector(state => state.cart.favourites)
   useEffect(() => {
     getItemDetail();
     getItems();
+    if(favourites?.findIndex(favourite => favourite?.id === itemId) >= 0){
+      setIsFavourite(true)
+    }
+    console.log("favourites", favourites)
   }, [itemId]);
 
   async function getItemDetail() {
@@ -131,7 +134,7 @@ export default function ItemDetail() {
             </Box>
             <Box>
               <Box m = '20px 0 5px 0'  display = 'flex' sx={{cursor : 'pointer'}} onClick={() => setIsFavourite(!isFavourite)}>
-                <Box sx={{color : 'red'}} >
+                <Box sx={{color : 'red'}} onClick = {() => dispatch(addRemoveToFavourite(item))}>
                   {isFavourite? 
                 <Typography sx = {{ml : '5px'}}>
                   <FavoriteOutlined />

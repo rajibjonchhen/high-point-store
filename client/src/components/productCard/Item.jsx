@@ -49,11 +49,12 @@ export default function Item({ item, width }) {
           display={isHovered ? "block" : "none"}
           position="absolute"
           bottom="15px"
-          left="0%"
+          left="50%"
+          marginLeft = "-28%"
           width="100%"
           padding="0 5%"
         >
-          <Box display="flex" justifyContent="space-between">
+          <Box display="flex" justifyContent="space-between" >
             {/* Amount */}
             <Box
               display="flex"
@@ -67,7 +68,7 @@ export default function Item({ item, width }) {
                         >
                           <RemoveIcon />
                </IconButton>
-                <Typography>{count}</Typography>
+                <Typography sx={{width : '15px'}}>{count}</Typography>
                 <IconButton
                   onClick={() =>
                     setCount(count + 1)

@@ -77,10 +77,10 @@ yup.object().shape({
 
 export default function CheckOut() {
 const cart = useSelector(state => state.cart.cart)
-const [activeStep,setActiveStep] = useState(1)
+const [activeStep,setActiveStep] = useState(0)
 
 const handleFormSubmit = async(values, actions) =>  {
-
+  console.log("submit")
   setActiveStep(activeStep+1)
   // 
   if(activeStep === 1 && values.shippingAddress.isSameAddress){
@@ -146,7 +146,7 @@ async function makePayment(values){
               setFieldValue
             }) => (
             <form onSubmit = {handleSubmit}>
-                {activeStep === 1 && 
+                {activeStep === 0 && 
               <Shipping 
                 values ={values} 
                 errors={errors} 
@@ -157,7 +157,7 @@ async function makePayment(values){
                 setFieldValue={setFieldValue} 
                 />
                 }
-                {activeStep === 2 && 
+                {activeStep === 1 && 
                 <Payment
                 values ={values} 
                 errors={errors} 
@@ -168,7 +168,7 @@ async function makePayment(values){
                 setFieldValue={setFieldValue} 
                 />}
                 <Box display = 'flex' justifyContent= 'space-between' gap = '50px'>
-                  {activeStep === 2 && (
+                  {activeStep > 0 && (
                     <Button
                     fullWidth
                     variant='contained'
@@ -195,7 +195,7 @@ async function makePayment(values){
                       borderRadius : 0,
                       padding : '15px 40px'
                     }}
-                    >{activeStep === 1? "Next" : "Place Order"}</Button>
+                    >{activeStep === 0? "Next" : "Place Order"}</Button>
                 </Box>
             </form>
             )}

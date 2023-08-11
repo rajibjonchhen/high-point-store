@@ -29,14 +29,15 @@ export default function Shipping({values, errors, touched, handleBlur, handleCha
             onChange = {() =>
                 setFieldValue("shippingAddress.isSameAddress",!values.shippingAddress.isSameAddress)
             }
+            defaultChecked
             />}/> Is the Shipping Address the same as the Billing Address
         </Box>
-        {values.shippingAddress.isSameAddress && (
+        {!values.shippingAddress.isSameAddress && (
         <Box>
             <Typography  sx = {{mb : '15px'}} fontSize= '18px'>Shipping Address</Typography>
             <AddressForm
-                type = "billingAddress"
-                values = {values.billingAddress} 
+                type = "shippingAddress"
+                values = {values.shippingAddress} 
                 errors = {errors}
                 touched={touched} 
                 handleBlur ={handleBlur} 
