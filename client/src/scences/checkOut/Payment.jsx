@@ -3,6 +3,7 @@ import { ErrorMessage } from 'formik'
 import React from 'react'
 
 export default function Payment({values, touched, errors, handleBlur, handleChange}) {
+  console.log("values.email",values.email)
   return (
     <Box m = "30px 0">
         <Box>
@@ -13,7 +14,7 @@ export default function Payment({values, touched, errors, handleBlur, handleChan
         label = 'Email'
         onBlur={handleBlur}
         onChange={handleChange}
-        value = {values.firstName}
+        value = {values.email}
         name = 'email'
         error = {!!touched.email && !!errors.email}
         helperText = {touched.email && errors.email}

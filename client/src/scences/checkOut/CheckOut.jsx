@@ -48,25 +48,25 @@ const initialValues = {
 }
 
 const checkOutSchema = [yup.object().shape({billingAddress : yup.object().shape({
-  firstName : yup.string().required("required"),
-    lastName : yup.string().required("required"),
-    country : yup.string().required("required"),
-    street1 : yup.string().required("required"),
+  firstName : yup.string().required("name is required"),
+    lastName : yup.string().required("surname is required"),
+    country : yup.string().required("country name is required"),
+    street1 : yup.string().required("street name required"),
     street2 : yup.string(),
-    city : yup.string().required("required"),
-    state : yup.string().required("required"),
-    postalCode : yup.string().required("required"),
+    city : yup.string().required("city is required"),
+    state : yup.string(),
+    postalCode : yup.string().required("postal code is required"),
 })}),
 yup.object().shape({shippingAddress : yup.object().shape({
     isSameAddress : yup.boolean(),
-    firstName : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
-    lastName : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
-    country : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
-    street1 : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
+    firstName : yup.string().when("isSameAddress", {is : false, then :yup.string().required("name is required")}),
+    lastName : yup.string().when("isSameAddress", {is : false, then :yup.string().required("surname is required")}),
+    country : yup.string().when("isSameAddress", {is : false, then :yup.string().required("country is required")}),
+    street1 : yup.string().when("isSameAddress", {is : false, then :yup.string().required("street name is required")}),
     street2 : yup.string(),
-    city : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
-    state : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
-    postalCode : yup.string().when("isSameAddress", {is : false, then :yup.string().required("required")}),
+    city : yup.string().when("isSameAddress", {is : false, then :yup.string().required("city is required")}),
+    state : yup.string().when("isSameAddress", {is : false, then :yup.string()}),
+    postalCode : yup.string().when("isSameAddress", {is : false, then :yup.string().required("postal code required")}),
 })
 }),
 yup.object().shape({
@@ -83,13 +83,13 @@ const handleFormSubmit = async(values, actions) =>  {
   console.log("submit")
   setActiveStep(activeStep+1)
   // 
-  if(activeStep === 1 && values.shippingAddress.isSameAddress){
+  if(activeStep === 0 && values.shippingAddress.isSameAddress){
     actions.setFieldValue("shippingAddress", {
       ...values.billingAddress,
       isSameAddress : true
     })
   }
-  if(activeStep === 2){
+  if(activeStep === 1){
     makePayment(values)
   }
   actions.setTouched({})

@@ -18,14 +18,15 @@ export default function ShoppingList() {
       setValue(newValue)
     }
     useEffect(() => {
-          getItems("")
+          getItems()
+          console.log("items----",items)
       }, [])
 
     useEffect(() => {
       getItems(value)
     }, [value])
 
-      async function getItems(filter){
+      async function getItems(filter = ""){
         console.log("🚀 ~ file: ShoppingList.jsx:29 ~ getItems ~ filter:", filter)
         const allProducts = await fetch("http://localhost:1337/api/items?populate=image",{
           method : "Get"

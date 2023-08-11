@@ -41,7 +41,7 @@ export default function AddressForm({type, values, errors, touched, handleBlur, 
             type : "text",
             label : "Country",
             value:"country",
-            name:"county",
+            name:"country",
             gridColumn:"span 2",
         },
         {
