@@ -50,7 +50,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       return { id: session.id };
       console.log("session")
     } catch (error) {
-      console.log(error)
+      console.log("be error",error)
       ctx.response.status = 500;
       return { error: {
         message: "There was a problem creating the change",

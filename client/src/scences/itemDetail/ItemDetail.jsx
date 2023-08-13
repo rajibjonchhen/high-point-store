@@ -173,8 +173,8 @@ export default function ItemDetail() {
       justifyContent = 'space-around'
       rowGap = '20px'
       columnGap = '1.33%'
-        >
-          {relItems.slice(0, 4).map(item => <Item key = {`${item.attributes.name}`} item={item}/>)}
+        >  
+          {relItems.slice(0, 4).map(item => <Item key = {`${item.attributes.name}`} item={item} width = '100px'/>)}
         </Box>
       </Box>
       </Box>

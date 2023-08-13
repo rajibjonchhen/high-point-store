@@ -6,10 +6,7 @@ import {Formik} from 'formik'
 
 import {
   Box,
-  IconButton,
-  Typography,
   Button,
-  useTheme,
   Stepper,
   Step,
   StepLabel
@@ -90,13 +87,15 @@ const handleFormSubmit = async(values, actions) =>  {
     })
   }
   if(activeStep === 1){
+    console.log("make payment")
     makePayment(values)
   }
   actions.setTouched({})
 }
 
 async function makePayment(values){
-  const stripe = await stripePromise
+  try {
+    const stripe = await stripePromise
   const requestBody = {
     userName : [values.firstName, values.secondName].join(" "),
     email : values.email,
@@ -115,8 +114,9 @@ async function makePayment(values){
   await stripe.redirectToCheckout({
     sessionId : session.id
   })
-
-
+  } catch (error) {
+    console.log("error on payment", error)
+  }
 }
 
 
