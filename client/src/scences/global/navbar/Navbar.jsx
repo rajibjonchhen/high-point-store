@@ -11,6 +11,7 @@ import {
   MenuOutlined,
   SearchOutlined,
   HomeOutlined,
+  FavoriteBorderOutlined,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../../theme";
@@ -106,6 +107,9 @@ setTotalItems(sumWithInitial);
               <ShoppingBagOutlined/>
             </IconButton>
             </Badge>
+            <IconButton sx={{color:'black'}} onClick={() => navigate(ConstRoutes.favourites.url())}>
+              <FavoriteBorderOutlined/>
+            </IconButton>
             <IconButton sx={{color:'black'}}>
               <MenuOutlined/>
             </IconButton>

@@ -1,16 +1,19 @@
-import './App.scss'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
-import Home from './scences/home/Home'
-import ItemDetail from './scences/itemDetail/ItemDetail'
-import Navbar from './scences/global/header/Navbar'
-import Footer from './scences/global/footer/Footer'
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ConstRoutes } from './constant/ConstRoutes'
-import { useEffect } from 'react'
-import CheckOut from './scences/checkOut/CheckOut'
-import CartMenu from './scences/global/cartMenu/CartMenu'
-import Success from './scences/checkOut/Success'
-import Cancel from './scences/checkOut/Cancel'
+
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+
+import { ConstRoutes } from './constant/ConstRoutes';
+import Cancel from './scences/checkOut/Cancel';
+import CheckOut from './scences/checkOut/CheckOut';
+import Success from './scences/checkOut/Success';
+import CartMenu from './scences/global/cartMenu/CartMenu';
+import Footer from './scences/global/footer/Footer';
+import Navbar from './scences/global/navbar/Navbar';
+import Home from './scences/home/Home';
+import ItemDetail from './scences/itemDetail/ItemDetail';
+import FavouritePage from './scences/favouritePage/FavouritePage';
 
 const ScrollToTop = () => {
   const {pathname} = useLocation()
@@ -34,6 +37,7 @@ function App() {
       <Route  path = { ConstRoutes.home.path } element = { <Home/> } />
       <Route  path = { ConstRoutes.itemDetail.path } element = { <ItemDetail/> } />
       <Route path = { ConstRoutes.checkout.path } element = { <CheckOut/> }  />
+      <Route path = { ConstRoutes.favourites.path } element = { <FavouritePage/> }  />
       <Route path = { ConstRoutes.success.path } element  = { <Success/> } />
       <Route path = { ConstRoutes.unsuccess.path } element  = { <Cancel/> } />
     </Routes>

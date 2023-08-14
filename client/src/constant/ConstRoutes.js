@@ -7,6 +7,10 @@ export const ConstRoutes = {
         url : (itemId) => `/detail/${itemId}`,
         path : '/detail/:itemId'
     },
+    favourites : {
+        url : () => `/favourites`,
+        path : '/favourites'
+    },
     checkout : {
         url : () => `/checkout`,
         path : '/checkout'

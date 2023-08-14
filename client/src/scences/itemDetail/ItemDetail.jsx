@@ -27,15 +27,10 @@ export default function ItemDetail() {
   const [item, setItem] = useState({});
   const [relItems, setRelItems] = useState([]);
   const [count, setCount] = useState(1)
-  const [isFavourite, setIsFavourite] = useState(false)
   const [tabValue, setTabValue] = useState("description")
-  const favourites = useSelector(state => state.cart.favourites)
   useEffect(() => {
     getItemDetail();
     getItems();
-    if(favourites?.findIndex(favourite => favourite?.id === itemId) >= 0){
-      setIsFavourite(true)
-    }
     console.log("favourites", item)
   }, []);
 
@@ -124,7 +119,7 @@ export default function ItemDetail() {
             </Box>
             <Box>
               <Box m = '20px 0 5px 0'  display = 'flex' onClick={() => setIsFavourite(!isFavourite)}>
-               <AddRemoveToFav item={item} isFavourite={isFavourite} text={isFavourite? "Remove from wishlist":"Add to wishlist"}/>
+               <AddRemoveToFav item={item} />
               </Box>
             </Box>
           </Box>
