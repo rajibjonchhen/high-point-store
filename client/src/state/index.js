@@ -14,12 +14,14 @@ export const cartSlice = createSlice({
       state.items = action.payload;
     },
     addRemoveToFavourite : (state, action) => {
-      const reqIndex = state.favourites.findIndex(item => item.id === action.payload.item.id)
+      
+      const reqIndex = state.favourites.findIndex(item => item.id === action.payload.id)
       if(reqIndex < 0){
-        state.favourites = [...state.favourites, action.payload.item]
+        state.favourites = [...state.favourites, action.payload]
       }else {
         state.favourites = state.favourites.filter((item, index) => reqIndex !== index)
       }
+      console.log("favourites --",state.favourites)
     },
     addToCart: (state, action) => {
       const index = state.cart.findIndex(item => item.id === action.payload.item.id)
