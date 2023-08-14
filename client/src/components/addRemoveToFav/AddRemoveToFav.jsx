@@ -11,19 +11,10 @@ export default function AddRemoveToFav({ item, isFavourite, text = "" }) {
       sx={{ color: "red", cursor: "pointer" }}
       onClick={() => dispatch(addRemoveToFavourite(item))}
     >
-      {isFavourite ? (
-        <Typography sx={{ ml: "5px" }}>
-          <FavoriteOutlined />
-          {text}
-          {/* Remove from wishlist */}
-        </Typography>
-      ) : (
-        <Typography sx={{ ml: "5px" }}>
-          <FavoriteBorderOutlined />
-          {text}
-          {/* Add to wishlist */}
-        </Typography>
-      )}
+      <Typography sx={{ ml: "5px" }}>
+        {isFavourite ? <FavoriteOutlined /> : <FavoriteBorderOutlined />}
+        {text}
+      </Typography>
     </Box>
   );
 }
