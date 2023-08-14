@@ -19,6 +19,7 @@ import { ConstRoutes } from "../../constant/ConstRoutes";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Item from "../../components/productCard/Item";
+import AddRemoveToFav from "../../components/addRemoveToFav/AddRemoveToFav";
 
 export default function ItemDetail() {
   const dispatch = useDispatch();
@@ -35,8 +36,8 @@ export default function ItemDetail() {
     if(favourites?.findIndex(favourite => favourite?.id === itemId) >= 0){
       setIsFavourite(true)
     }
-    console.log("favourites", favourites)
-  }, [itemId]);
+    console.log("favourites", item)
+  }, []);
 
   async function getItemDetail() {
     const itemDetail = await fetch(
@@ -47,20 +48,12 @@ export default function ItemDetail() {
     );
     const itemDetailJson = await itemDetail.json();
     setItem(itemDetailJson.data);
-    console.log(
-      "🚀 ~ file: ItemDetail.jsx:29 ~ getProductDetail ~ productDetailJson:",
-      itemDetailJson.data.attributes.image.data.attributes.formats.medium.url,
-      "---",
-      itemId,
-      {}
-    );
   }
 
   const handleTab = (e, newValue) => {
     setTabValue(newValue)
   }
   async function getItems() {
-    console.log("🚀 ~ file: ShoppingList.jsx:29 ~ getItems ~ filter:");
     const allProducts = await fetch(
       "http://localhost:1337/api/items?populate=image",
       {
@@ -72,15 +65,12 @@ export default function ItemDetail() {
     const filteredItems = allProductsJson.data.filter(
       (item) => item.id !== itemId
     );
-    console.log(
-      "🚀 ~ file: ShoppingList.jsx:34 ~ getItems ~ filteredItems:",
-      filteredItems
-    );
+   
     setRelItems(filteredItems);
   }
 
   return (
-    item && (
+    item.id && (
       <Box width="80%" m="80px auto">
         {/* image and the description */}
         <Box display="flex" flexWrap="wrap" columnGap="40px">
@@ -133,19 +123,8 @@ export default function ItemDetail() {
               >Add to cart  <ShoppingCartOutlined/></Button>
             </Box>
             <Box>
-              <Box m = '20px 0 5px 0'  display = 'flex' sx={{cursor : 'pointer'}} onClick={() => setIsFavourite(!isFavourite)}>
-                <Box sx={{color : 'red'}} onClick = {() => dispatch(addRemoveToFavourite(item))}>
-                  {isFavourite? 
-                <Typography sx = {{ml : '5px'}}>
-                  <FavoriteOutlined />
-                    Remove from wishlist
-                </Typography>
-                  :<Typography sx = {{ml : '5px'}}>
-                  <FavoriteBorderOutlined />
-                  Add to wishlist
-                </Typography>
-                  }
-                </Box>
+              <Box m = '20px 0 5px 0'  display = 'flex' onClick={() => setIsFavourite(!isFavourite)}>
+               <AddRemoveToFav item={item} isFavourite={isFavourite} text={isFavourite? "Remove from wishlist":"Add to wishlist"}/>
               </Box>
             </Box>
           </Box>

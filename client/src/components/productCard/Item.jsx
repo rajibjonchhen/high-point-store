@@ -10,12 +10,15 @@ import { shades } from "../../theme";
 import { ConstRoutes } from "../../constant/ConstRoutes";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import AddRemoveToFav from "../addRemoveToFav/AddRemoveToFav";
 
 export default function Item({ item, width }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false)
+
   const {
     palette: { neutral },
   } = useTheme();
@@ -81,6 +84,9 @@ export default function Item({ item, width }) {
             sx = {{ backgroundColor : shades.primary[300], color : 'white'}}
             >
               <ShoppingCart/>
+            </Button>
+            <Button  onClick={() => setIsFavourite(!isFavourite)}>
+               <AddRemoveToFav item={item} isFavourite={isFavourite} text={""}/>
             </Button>
           </Box>
         </Box>

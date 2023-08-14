@@ -132,14 +132,24 @@ export default function CartMenu() {
               </Typography>
             </FlexBox>
             <Button
-              sx={{
-                backgroundColor: shades.primary[400],
-                color: "white",
-                borderRadius: "0",
-                minWidth: "100%",
-                padding: "20px 40px",
-                m: "20px 0",
-              }}
+            fullWidth
+            variant='contained'
+            color = 'primary'
+            sx = {{
+              backgroundColor : shades.primary[200],
+              boxShadow : 'none',
+              color : 'white',
+              borderRadius : 0,
+              padding : '15px 40px'
+            }}
+              // sx={{
+              //   backgroundColor: shades.primary[400],
+              //   color: "white",
+              //   borderRadius: "0",
+              //   minWidth: "100%",
+              //   padding: "20px 40px",
+              //   m: "20px 0",
+              // }}
               onClick={() => {dispatch(setIsCartOpen({})); navigate(ConstRoutes.checkout.url())}}
             >
               checkout
