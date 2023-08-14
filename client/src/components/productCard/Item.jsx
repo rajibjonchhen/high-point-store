@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import "./productCard.scss";
-import { Box, IconButton, Typography, Button, useTheme } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { ShoppingCart } from "@mui/icons-material";
+import './productCard.scss';
 
-import { addToCart, decrementCount, incrementCount } from "../../state";
-import { shades } from "../../theme";
-import { ConstRoutes } from "../../constant/ConstRoutes";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import AddRemoveToFav from "../addRemoveToFav/AddRemoveToFav";
+import { ShoppingCart } from '@mui/icons-material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Box, Button, IconButton, Typography, useTheme } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { ConstRoutes } from '../../constant/ConstRoutes';
+import { addToCart } from '../../state';
+import { shades } from '../../theme';
+import AddRemoveToFav from '../addRemoveToFav/AddRemoveToFav';
 
 export default function Item({ item, width }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false)
 
   const {
     palette: { neutral },
@@ -85,10 +85,11 @@ export default function Item({ item, width }) {
             >
               <ShoppingCart/>
             </Button>
-            <Button  onClick={() => setIsFavourite(!isFavourite)}>
-               <AddRemoveToFav item={item} isFavourite={isFavourite} text={""}/>
-            </Button>
+            
           </Box>
+        </Box>
+        <Box sx = {{position : "absolute", left : 10, top : 10}}>
+          <AddRemoveToFav item={item} />
         </Box>
       </Box>
       <Box mt = '3px'>
